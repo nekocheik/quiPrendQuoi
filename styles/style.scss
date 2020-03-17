@@ -1,0 +1,37 @@
+:root {
+  --primary-color: #4299e1;
+  --secondary-color: #9E1946;
+}
+header {
+  // background-image: url('/images/party.jpg');
+  background-size: cover;
+}
+body {
+  font-family: Helvetica, Roboto ,sans-serif;
+}
+
+.container__inputs section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  max-width: 300px;
+  margin: auto;
+}
+
+.container__inputs label {
+  color:  var(--primary-color);
+  font-size: 14px;
+}
+
+.container__inputs input::placeholder {
+  color: transparent;
+}
+
+.container__inputs input {
+  font-size: 14px;
+  border: 1.5px var(--primary-color) solid;
+  padding: 3px 0px 3px 20px;
+  border-radius: 10px;
+}
+
+@import './tailwind.conf.scss'
