@@ -1,1 +1,0 @@
-"use strict";var tailwindcss=require("tailwindcss"),purgecss=require("@fullhuman/postcss-purgecss")();module.exports={plugins:[require("tailwindcss")("./tailwind.config.js"),require("@fullhuman/postcss-purgecss")({content:["**/*.pug"],defaultExtractor:function(s){return s.match(/[\w-/:]+(?<!:)/g)||[]}}),require("autoprefixer")()]};
