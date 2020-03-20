@@ -1,13 +1,27 @@
 include ../partials/header.pug
-
 section(class="relative flex-col flex" )
   header(class="text-white px-2" )
     h2(class="text-center text-4xl md:text-3xl pt-10 font-bold" ) Qui prend quoi ?
     h2(class="text-center text-xl pb-10 font-thin py-6" ) Page événement
   div
-    section(class="relative flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto py-10  shadow-xl rounded-lg -mt-4" )
-      h2 #{party.name}
-      h3 Créé par #{party.author}
-      label(for="url") Partagez l'événement
-      input(id="url" value=`${url}`)
-  button(type="submit" class="bg-secondary-color text-white font-bold py-2 px-12 rounded m-auto block -mt-4 z-10" ) COPY
+    section(class="relative text-gray-800 flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto py-10  shadow-xl rounded-lg -mt-4 px-2" )
+      h2 <span class="font-semibold">Nom de l'événement</span> : #{party.name}
+      h3 <span class="font-semibold">Auteur</span> : Créé par #{party.author}
+      div.py-3.flex.flex-col
+        label.text-center.text-xl.font-bold.text-primary-color(for="url") Partagez l'événement
+        input(id="url" value=`${url}`)
+  div.flex.m-auto.flex-wrap(class="w-9/12 -mt-4")
+    button(type="submit" class="bg-secondary-color text-white font-bold py-2 px-12 rounded m-auto block z-10" ) COPY
+    button(type="submit" class="bg-primary-color text-white font-bold py-2 px-12 rounded m-auto block z-10" ) PARTAGER
+
+div.m-auto.pt-4.text-black(class="w-10/12 py-10")
+  p.text-2xl.font-bold.text Et toi tu prend quoi ?
+  p dit nous se que tu souhaites amenés a l'événement
+  form.py-4.text-black(action=`/party/add/items/${party._id}` method="POST")
+    div
+      label.block(for="item_name") L'élément que vous amenés :
+      input(type="text" id="item_name" name="name")
+    div
+      label.block(for="user_name") Vortre nom :
+      input(type="text" id="user_name" name="user")
+    button.bg-primary-color.text-white.font-bold.py-2.px-12.rounded.m-auto.mt-2 Enregistrer

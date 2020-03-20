@@ -1,11 +1,12 @@
-@import './tailwind.css';
+@import "./config/medias.scss" ;
+@import "./blocs/newParty.scss" ;
 
 :root {
   --primary-color: #4299e1;
   --secondary-color: #9E1946;
 }
 header {
-  // background-image: url('/images/party.jpg');
+  background-image: url('assets/images/party.jpg');
   background-size: cover;
 }
 body {
@@ -29,7 +30,7 @@ body {
   color: transparent;
 }
 
-.container__inputs input {
+input {
   font-size: 14px;
   border: 1.5px var(--primary-color) solid;
   padding: 3px 0px 3px 20px;

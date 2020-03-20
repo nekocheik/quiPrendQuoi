@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run sass\" \"nodemon app.js\"",
-    "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed"
+    "start": "npm run build:css; concurrently --kill-others-on-fail \"npm run sass\" \"nodemon app.js\"",
+    "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed",
+    "watch": "node_modules/vigilia/bin/vigilia '**/*.js':'node app.js' 'styles/**/*.scss':'npm run sass'",
+    "build:css": "postcss --config postcss.config.js styles/tailwind.css -o public/tailwind.css"
   },
   "keywords": [],
   "author": "veggiemonk <julien.bisconti@gmail.com>",
@@ -14,6 +16,8 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "postcss-cli": "^7.1.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {
@@ -21,7 +25,8 @@
     "concurrently": "^5.1.0",
     "node-sass": "^4.13.1",
     "purgecss": "^2.1.0",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "vigilia": "^1.0.0"
   },
   "description": ""
 }
