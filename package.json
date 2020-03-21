@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run build:css; concurrently --kill-others-on-fail \"npm run sass\" \"npm run watchify\" \"nodemon app.js\"",
-    "start": "npm run build:css ; nodemon app.js",
+    "start": "node ./app.js",
     "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed",
     "watchify": "watchify scripts/*.js -o public/script.js -t [ babelify --presets [ @babel/preset-env babel-preset-minify ] ]",
     "build:css": "postcss --config postcss.config.js styles/tailwind.css -o public/tailwind.css"
