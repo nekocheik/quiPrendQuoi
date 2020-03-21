@@ -3,25 +3,42 @@ section(class="relative flex-col flex" )
   header(class="text-white px-2" )
     h2(class="text-center text-4xl md:text-3xl pt-10 font-bold" ) Qui prend quoi ?
     h2(class="text-center text-xl pb-10 font-thin py-6" ) Page événement
-  div
-    section(class="relative text-gray-800 flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto py-10  shadow-xl rounded-lg -mt-4 px-2" )
+  div.max-w-screen-sm.m-auto.w-full
+    section(class="relative text-gray-800 flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto py-10  shadow-xl rounded-lg -mt-4 px-2 md:px-12" )
       h2 <span class="font-semibold">Nom de l'événement</span> : #{party.name}
       h3 <span class="font-semibold">Auteur</span> : Créé par #{party.author}
       div.py-3.flex.flex-col
-        label.text-center.text-xl.font-bold.text-primary-color(for="url") Partagez l'événement
-        input(id="url" value=`${url}`)
-  div.flex.m-auto.flex-wrap(class="w-9/12 -mt-4")
-    button(type="submit" class="bg-secondary-color text-white font-bold py-2 px-12 rounded m-auto block z-10" ) COPY
-    button(type="submit" class="bg-primary-color text-white font-bold py-2 px-12 rounded m-auto block z-10" ) PARTAGER
+        label.text-center.text-xl.font-bold.text-primary-color.py-2(for="url") Partagez l'événement
+        input.clipboard__el(id="url" data-clipboard=`${url}` data-share-title=`${party.name}` data-share-url=`${url}` data-share-text=`${party.name} vous invite a rejoindre l'événement ${party.date}`  value=`${url}`)
+  div.flex.m-auto.flex-wrap.max-w-screen-sm.m-auto.z-10(class="w-9/12 -mt-4")
+    button.border.copy__button(type="submit") COPY
+    button(type="submit") PARTAGER
 
-div.m-auto.pt-4.text-black(class="w-10/12 py-10")
-  p.text-2xl.font-bold.text Et toi tu prend quoi ?
-  p dit nous se que tu souhaites amenés a l'événement
-  form.py-4.text-black(action=`/party/add/items/${party._id}` method="POST")
-    div
-      label.block(for="item_name") L'élément que vous amenés :
-      input(type="text" id="item_name" name="name")
-    div
-      label.block(for="user_name") Vortre nom :
-      input(type="text" id="user_name" name="user")
-    button.bg-primary-color.text-white.font-bold.py-2.px-12.rounded.m-auto.mt-2 Enregistrer
+div.m-auto.pt-4.text-black.max-w-screen-sm.m-auto.w-full(class="w-10/12 py-10")
+  div.m-auto.pt-4.text-black(class="py-10 w-10/12")
+    p.text-2xl.font-bold.text Et toi tu prend quoi ?
+    p dit nous se que tu souhaites amenés a l'événement
+    form.py-4.text-primary-color(action=`/party/add/items/${party._id}` method="POST")
+      div
+        label.block(for="item_name" ) L'élément que vous amenés :
+        input(type="text" id="item_name" required name="name")
+      div
+        label.block(for="user_name") Vortre nom :
+        input(type="text" id="user_name" name="user")
+      button Enregistrer
+  if party.items.length
+    form.m-auto(action=`/party/delet/items/${party._id}` method="POST" class="w-10/12")
+      p.text-2xl.font-bold Élément Déja ajouté à l'évenement :
+      ul
+        each item in party.items
+          li.p-4.bg-white.mt-3.m-auto.rounded-lg.relative
+            p.text-xl.font-bold #{item.user}
+            if item.user  
+              <hr>
+            p Objet amené: #{item.name}
+            section.absolute.right-0.top-0.bottom-0.m-auto.w-16.flex.flex-col.justify-center
+              <label class="block text-center text-primary-color" for="#{item.name}__#{item._id}">select</label>
+              <input type="checkbox" id="#{item.name}__#{item._id}" name="#{item._id}"  class=" w-4 h-4 block mx-auto">
+      button.bg-secondary-color Supprimer
+
+

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:css; concurrently --kill-others-on-fail \"npm run sass\" \"nodemon app.js\"",
+    "start": "npm run build:css; concurrently --kill-others-on-fail \"npm run sass\" \"npm run watchify\" \"nodemon app.js\"",
     "sass": "node-sass styles/style.scss public/style.css -w --output-style compressed",
-    "watch": "node_modules/vigilia/bin/vigilia '**/*.js':'node app.js' 'styles/**/*.scss':'npm run sass'",
+    "watchify": "watchify scripts/*.js -o public/script.js -t [ babelify --presets [ @babel/preset-env babel-preset-minify ] ]",
     "build:css": "postcss --config postcss.config.js styles/tailwind.css -o public/tailwind.css"
   },
   "keywords": [],
@@ -15,18 +15,23 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.15.2",
     "express-validator": "^6.4.0",
     "postcss-cli": "^7.1.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
     "@fullhuman/postcss-purgecss": "^2.1.0",
+    "babel-preset-minify": "^0.5.1",
+    "babelify": "^10.0.0",
     "concurrently": "^5.1.0",
     "node-sass": "^4.13.1",
     "purgecss": "^2.1.0",
     "tailwindcss": "^1.2.0",
-    "vigilia": "^1.0.0"
+    "vigilia": "^1.0.0",
+    "watchify": "^3.11.1"
   },
   "description": ""
 }

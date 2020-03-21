@@ -1,6 +1,8 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
+const http = require('http').createServer(app);
+const socket = require('./socket.js')( http );
 const dotenv = require("dotenv").config();
 const port = process.env.PORT;
 const axios = require("axios");
@@ -10,15 +12,23 @@ app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", function(req, res) {
+app.get("/", (req, res) => {
   res.render("index", { title: "Qui prend quoi ?" });
 });
 
 
-
+const CheckErrorAndRedirect = (res) => {
+  const errors = validationResult(res)
+  if (!errors.isEmpty()) {
+    res.format({
+      'application/json': () => {
+        res.send(errors)
+      },
+    })
+  }
+}
 
 app.post("/party", (req, res) => {
-  console.log(`${process.env.API_URL}/party`);
   axios
     .post(`${process.env.API_URL}/party`, req.body)
     .then(({ data }) => {
@@ -30,50 +40,51 @@ app.post("/party", (req, res) => {
     });
 });
 
+app.get("/party/:id", (req, res) => {
+  const id = req.params.id
+  axios
+    .get(`${process.env.API_URL}/party/${id}`)
+    .then(({ data }) => {
+      res.render("party", {
+        party: data,
+        title: data.name,
+        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`,
+        id : id,
+      });
+    })
+    .catch(err => {});
+});
+
 
 
 app.post("/party/add/items/:id", [
   check('name').isLength({ min: 3 }),
   check('user')
 ], (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    res.format({
-      'application/json': function () {
-        res.send(errors)
-      },
-    })
-  }
-  let id = req.params.id
+  CheckErrorAndRedirect(req)
+  const id = req.params.id
   axios
     .post(`${process.env.API_URL}/party/${id}/items`, req.body)
     .then(({ data }) => {
-      res.render("party", {
-        party: data,
-        title: data.name,
-        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${id}`
-      });
+      socket.itemsUpdate(id)
+      res.redirect(`/party/${id}`)
     })
-    .catch(err => console.log(
-      err, 'ici ces lerreur'
-    ));
+    .catch(err => {});
 });
 
-app.get("/party/:id", (req, res) => {
+
+app.post("/party/delet/items/:id", (req, res) => {
+  const id = req.params.id
+  const items = Object.keys(req.body)
   axios
-    .get(`${process.env.API_URL}/party/${req.params.id}`)
+    .all( items.map((item)=> axios.delete(`${process.env.API_URL}/party/${id}/items/${item}`)))
     .then(({ data }) => {
-      res.render("party", {
-        party: data,
-        title: data.name,
-        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`,
-        id : req.params.id,
-      });
+      socket.itemsUpdate(id)
+      res.redirect(`/party/${id}`)
     })
-    .catch(err => console.log(err));
+    .catch(err => {});
 });
 
 
 
-
-app.listen(port, () => console.log(`Front app listening on port ${port}!`));
+http.listen(port, () => console.log(`Front app listening on port ${port}!`));

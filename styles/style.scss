@@ -31,8 +31,10 @@ body {
 }
 
 input {
-  font-size: 14px;
   border: 1.5px var(--primary-color) solid;
   padding: 3px 0px 3px 20px;
-  border-radius: 10px;
+  border-radius: 27px;
+  height: 40px;
+  background: white;
+  width: 100%;
 }
