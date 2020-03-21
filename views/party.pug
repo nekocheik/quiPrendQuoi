@@ -12,12 +12,13 @@ section(class="relative flex-col flex" )
         input.clipboard__el(id="url" data-clipboard=`${url}` data-share-title=`${party.name}` data-share-url=`${url}` data-share-text=`${party.name} vous invite a rejoindre l'événement ${party.date}`  value=`${url}`)
   div.flex.m-auto.flex-wrap.max-w-screen-sm.m-auto.z-10(class="w-9/12 -mt-4")
     button.border.copy__button(type="submit") COPY
-    button(type="submit") PARTAGER
+    button.share__button(type="submit") PARTAGER
+    p #{tddd}
 
 div.m-auto.pt-4.text-black.max-w-screen-sm.m-auto.w-full(class="w-10/12 py-10")
   div.m-auto.pt-4.text-black(class="py-10 w-10/12")
     p.text-2xl.font-bold.text Et toi tu prend quoi ?
-    p dit nous se que tu souhaites amenés a l'événement
+    p dit nous ce que tu souhaites amenés a pour #{party.name}
     form.py-4.text-primary-color(action=`/party/add/items/${party._id}` method="POST")
       div
         label.block(for="item_name" ) L'élément que vous amenés :

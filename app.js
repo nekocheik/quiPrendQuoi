@@ -41,6 +41,7 @@ app.post("/party", (req, res) => {
 });
 
 app.get("/party/:id", (req, res) => {
+  console.log(req)
   const id = req.params.id
   axios
     .get(`${process.env.API_URL}/party/${id}`)
@@ -48,7 +49,7 @@ app.get("/party/:id", (req, res) => {
       res.render("party", {
         party: data,
         title: data.name,
-        url: `${process.env.FRONT_URL}:${process.env.PORT}/party/${data._id}`,
+        url: `${process.env.FRONT_URL}party/${data._id}`,
         id : id,
       });
     })
