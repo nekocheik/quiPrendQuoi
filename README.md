@@ -6,9 +6,9 @@ link : https://quiprendquoi2.herokuapp.com/
 
 ## Installation
 
-npm i 
+    npm i 
 
-npm run dev
+    npm run dev
 
 ## Améliorations Amenées
 
