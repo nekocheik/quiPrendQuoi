@@ -1,4 +1,4 @@
-# Welcome to StackEdit!
+# quiPrendQuoi
 
 Bienvenue sur mon bien modeste site qui vous permettra de créer et invité des amies a vos événement de personne confiné 😀
 
@@ -25,7 +25,7 @@ npm
 ### tailwindcss
 
 tailwindcss est un framwork de classe utilitaire en css, de puis un ficher config il génére des classe qui pourront être réutiliser dans toute l'application, son but c'est de normé le plus notre css pour qu'on est le moins de style qui sort du cadre que les ui/ux designer nous aura fourni, par exemple si sur des maquette les taille de text courant sont toutes 14 px et qu'on remarque c'est trop petit il sera très facile de changer la taille de tous les text correspondent au text courant, il suffira de changer la variable dans la configuration. si j'aime bien se framework c'est parce qu'il me permet de gagner beaucoup de temps car je ne suis pas toujours entrain de changer de ficher pour trouver la class qui correspond a tel ou tel div.
-### et le responsive dans tout ça ? 
+### Et le responsive dans tout ça ? 
 et bien il est toujours possible de faire des site en mobile first responsive avec tailwind, il suffi juste de préfixé la classe par la dénomination de la taille de l'écran qui se trouve dans la config.
 
 exemple :
@@ -34,4 +34,4 @@ exemple :
 cela vous permet de changer la font size au moment ou la taille de l'écran correspond a medium, ah ah pratique non ?
 
 ### Mais ça n'est pas trop lourd de générer tout c'est classe
-he bien oui......., mais nous avons post css qui permet de regarder dans ton html qu'elle classe sont réellement utilisé,  
+he bien oui......., mais nous avons postcss qui permet de regarder dans ton html qu'elle classe sont réellement utilisé pour supprimer celle qui s'y trouve pas. mais postcss mérite un article a lui tout seul.
