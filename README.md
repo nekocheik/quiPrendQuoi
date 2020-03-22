@@ -2,10 +2,12 @@
 
 Bienvenue sur mon bien modeste site qui vous permettra de créer et d'inviter des amis à vos événement de personne confiné 😀
 
+link : https://quiprendquoi2.herokuapp.com/
+
 ## Installation
 
 npm i 
-npm  
+npm run dev
 
 ## Améliorations Amenées
 
