@@ -38,3 +38,10 @@ input {
   background: white;
   width: 100%;
 }
+
+
+@mixin medium {
+  @media (min-width: 430px) {
+    @content;
+  }
+}

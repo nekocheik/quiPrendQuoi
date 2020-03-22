@@ -5,6 +5,9 @@
 "use strict";var socket=io(window.location.pathname);socket.on("updatItems",function(){console.log("new Items"),location.reload()});
 
 },{}],3:[function(require,module,exports){
-"use strict";(function(){var a=document.querySelector(".share__button");navigator.share||(a.style.display="none")})();
+"use strict";(function(){"undefined"!=typeof party&&(console.log(party),localStorage.setItem(location.href,party.name))})();
 
-},{}]},{},[1,2,3]);
+},{}],4:[function(require,module,exports){
+"use strict";(function(){var a=document.querySelector(".share__button");navigator.share?navigator.share({title:document.title,text:"Hello World",url:window.location.href}):a.style.display="none"})();
+
+},{}]},{},[1,2,3,4]);

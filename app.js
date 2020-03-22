@@ -11,6 +11,8 @@ const { check, validationResult } = require('express-validator');
 app.set("view engine", "pug");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(express.static("pwa"));
+
 
 app.get("/", (req, res) => {
   res.render("index", { title: "Qui prend quoi ?" });
