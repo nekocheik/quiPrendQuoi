@@ -5,7 +5,7 @@ section(class="relative flex-col flex" )
   header(class="text-white px-2" )
     h2(class="text-center text-4xl md:text-3xl pt-10 font-bold" ) Qui prend quoi ?
     h2(class="text-center text-xl pb-10 font-thin py-6" ) Page événement
-  div.max-w-screen-sm.m-auto.w-full
+  div.max-w-screen-sm.m-auto.w-full.px-2
     section(class="relative text-gray-800 flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto py-10  shadow-xl rounded-lg -mt-4 px-2 md:px-12" )
       h2 <span class="font-semibold">Nom de l'événement</span> : #{party.name}
       h3 <span class="font-semibold">Auteur</span> : Créé par #{party.author}
@@ -17,7 +17,7 @@ section(class="relative flex-col flex" )
     button.share__button(type="submit") PARTAGER
     p #{tddd}
 
-div.m-auto.pt-4.text-black.max-w-screen-sm.m-auto.w-full(class="w-10/12 py-10")
+div.m-auto.pt-4.text-black.max-w-screen-sm.m-auto.w-full.px-2(class="w-10/12 py-10")
   div.m-auto.pt-4.text-black(class="py-10 w-10/12")
     p.text-2xl.font-bold.text Et toi tu prend quoi ?
     p dit nous ce que tu souhaites amenés a pour #{party.name}
@@ -26,7 +26,7 @@ div.m-auto.pt-4.text-black.max-w-screen-sm.m-auto.w-full(class="w-10/12 py-10")
         label.block(for="item_name" ) L'élément que vous amenés :
         input(type="text" id="item_name" required name="name")
       div
-        label.block(for="user_name") Vortre nom :
+        label.block(for="user_name") Votre nom :
         input(type="text" id="user_name" name="user")
       button Enregistrer
   if party.items.length

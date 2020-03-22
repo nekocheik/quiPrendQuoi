@@ -1,8 +1,11 @@
 {
+  "name": "Qui prend quoi ?",
+  "short_name": "QPQ?",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "browser",
+  "display": "standalone",
   "Scope": "/",
+  "prefer_related_applications": true,
   "start_url": "/",
   "icons": [
     {

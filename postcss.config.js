@@ -8,10 +8,10 @@ module.exports = {
   "plugins": [
     require('tailwindcss')('tailwind.js'),
     require('autoprefixer'),
-    purgecss({
-      content: ['**/*.pug'],
-      css: ['tailwind.css']
-    }),
+    // purgecss({
+    //   content: ['**/*.pug'],
+    //   css: ['tailwind.css']
+    // }),
     minify({
       compressor: csso,
       input: './public/tailwind.css',
