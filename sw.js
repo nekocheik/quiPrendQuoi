@@ -2,6 +2,12 @@ function isPartyPage(url) {
   return /party\/[a-zA-Z0-9]*$/.test(url);
 }
 
+self.addEventListener('sync', function(event) {
+  if (event.tag == 'myFirstSync') {
+    event.waitUntil(doSomeStuff());
+  }
+});
+
 addEventListener('install', (event) => {
   event.waitUntil(caches.open('offline').then((cache) => {cache.add('offline.html');}));
 });

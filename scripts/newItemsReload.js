@@ -1,11 +1,10 @@
-(()=> {  
+(()=> { 
   window.addEventListener('load', () => {
     const socket = io(window.location.pathname);
-    const sendNotification = new Notification("Un nouvelle objet a été ajouté");
 
     socket.on("updatItems", (data) => {
+      new Notification("Un nouvelle objet a été ajouté")
       location.reload();
-      sendNotification()
     })
 
     if (Notification.permission !== 'denied') {
@@ -15,10 +14,12 @@
         if(!('permission' in Notification)) {
           Notification.permission = permission;
         }
-  
+
+        console.log(localStorage.getItem("firstNotification"))
         // Si l'utilisateur est OK, on crée une notification
-        if (permission === "granted") {
-          var notification = new Notification("Salut toi !");
+        if (permission === "granted" && localStorage.getItem("firstNotification") !== "yes") {
+          const notification = new Notification("Les notification sont maintenant activé 😃");
+          localStorage.setItem("firstNotification", "yes")
         }
       });
     }
