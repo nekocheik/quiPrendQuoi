@@ -26,7 +26,7 @@
     "express-validator": "^6.4.0",
     "postcss-cli": "^7.1.0",
     "pug": "^2.0.4",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.0",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
